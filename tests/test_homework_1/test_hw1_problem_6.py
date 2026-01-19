@@ -1,5 +1,6 @@
 from network_utilities import adjacency_list_to_graph
 import networkx as nx
+import plotting_utilities as pu
 
 def test_homework_problem_6() -> None:
     # What I expect
@@ -9,14 +10,16 @@ def test_homework_problem_6() -> None:
 
     # when
     ### FIX THIS ADJACENCY LIST
-    adjacency_list: dict[int, set[int]] = {1: {2},
-                                           2: {3},
-                                           3: {4},
-                                           4: {5},
-                                           5: {1},
-                                           6: {5},
+    adjacency_list: dict[int, set[int]] = {1: {2, 5},
+                                           2: {3, 1},
+                                           3: {4, 2},
+                                           4: {3},
+                                           5: {1, 6},
+                                           6: {5, 7},
                                            7: {6}}
     G = adjacency_list_to_graph(adjacency_list)
+
+    # pu.show_graph(G)
 
     # then
     assert nx.is_connected(G)
